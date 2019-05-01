@@ -29,15 +29,18 @@
 		<property name="show_sql">true</property>
 
 		<!-- Cria as tabelas no BD -->
-		<property name="hbm2ddl.auto">create</property>
+		<property name="hbm2ddl.auto">update</property>
 
 		<!-- Mapeamento das entidades -->
 		<mapping class="br.com.guido.farmacia.domain.Estado" />
 		<mapping class="br.com.guido.farmacia.domain.Cidade" />
 		<mapping class="br.com.guido.farmacia.domain.Cliente" />
 		<mapping class="br.com.guido.farmacia.domain.Fabricante" />
+		<mapping class="br.com.guido.farmacia.domain.Funcionario" />
 		<mapping class="br.com.guido.farmacia.domain.Pessoa" />
 		<mapping class="br.com.guido.farmacia.domain.Produto" />
+		<mapping class="br.com.guido.farmacia.domain.Usuario" />
+		<mapping class="br.com.guido.farmacia.domain.Venda" />
 	</session-factory>
 
 </hibernate-configuration>
