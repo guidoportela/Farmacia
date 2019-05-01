@@ -34,7 +34,9 @@
 		<!-- Mapeamento das entidades -->
 		<mapping class="br.com.guido.farmacia.domain.Estado" />
 		<mapping class="br.com.guido.farmacia.domain.Cidade" />
+		<mapping class="br.com.guido.farmacia.domain.Cliente" />
 		<mapping class="br.com.guido.farmacia.domain.Fabricante" />
+		<mapping class="br.com.guido.farmacia.domain.Pessoa" />
 		<mapping class="br.com.guido.farmacia.domain.Produto" />
 	</session-factory>
 
