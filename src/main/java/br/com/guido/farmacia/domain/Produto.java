@@ -15,7 +15,7 @@ public class Produto extends GenericDomain {
 	private String descricao;
 
 	@Column(nullable = false)
-	private Short qunatidade;
+	private Short quantidade;
 
 	@Column(nullable = false, precision = 6, scale = 2)
 	private BigDecimal preco;
@@ -32,12 +32,12 @@ public class Produto extends GenericDomain {
 		this.descricao = descricao;
 	}
 
-	public Short getQunatidade() {
-		return qunatidade;
+	public Short getQuantidade() {
+		return quantidade;
 	}
 
-	public void setQunatidade(Short qunatidade) {
-		this.qunatidade = qunatidade;
+	public void setQuantidade(Short quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	public BigDecimal getPreco() {
