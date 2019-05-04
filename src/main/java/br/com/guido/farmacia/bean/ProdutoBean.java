@@ -58,7 +58,7 @@ public class ProdutoBean implements Serializable {
 		}
 	}
 
-	public void novo() {
+	public void novoProduto() {
 		try {
 			produto = new Produto();
 

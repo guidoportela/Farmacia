@@ -17,7 +17,7 @@
 				paginator="true" value="#{produtoBean.produtos}" var="cursorProduto"
 				rows="5">
 				<f:facet name="header">
-					<p:commandButton value="Novo" actionListener="#{produtoBean.novo}"
+					<p:commandButton value="Novo" actionListener="#{produtoBean.novoProduto}"
 						oncomplete="PF('dlgProdutos').show();"
 						update=":mensagem :formCadastro:painel">
 						<f:actionListener
@@ -30,7 +30,7 @@
 					<h:outputText value="#{cursorProduto.descricao}" />
 				</p:column>
 
-				<p:column headerText="Quantidade">
+				<p:column headerText="Quantidade" sortBy="#{cursorProduto.quantidade}">
 					<h:outputText value="#{cursorProduto.quantidade}" />
 				</p:column>
 
