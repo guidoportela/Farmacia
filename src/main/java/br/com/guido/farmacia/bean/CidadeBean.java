@@ -52,7 +52,7 @@ public class CidadeBean implements Serializable {
 	public void listar() {
 		try {
 			CidadeDAO cidadeDAO = new CidadeDAO();
-			cidades = cidadeDAO.listar();
+			cidades = cidadeDAO.listarOrdenado("nome");
 
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar as cidades");
@@ -65,7 +65,7 @@ public class CidadeBean implements Serializable {
 			cidade = new Cidade();
 
 			EstadoDAO estadoDAO = new EstadoDAO();
-			estados = estadoDAO.listar();
+			estados = estadoDAO.listarOrdenado("nome");
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao gerar uma nova cidade");
 			erro.printStackTrace();
@@ -79,8 +79,8 @@ public class CidadeBean implements Serializable {
 
 			cidade = new Cidade();
 			EstadoDAO estadoDAO = new EstadoDAO();
-			estados = estadoDAO.listar(); // LIMPAR COMBO DE ESTADOS
-			cidades = cidadeDAO.listar(); // LIMPAR TABELA DE CIDADES NA LISTAGEM
+			estados = estadoDAO.listarOrdenado("nome"); // LIMPAR COMBO DE ESTADOS
+			cidades = cidadeDAO.listarOrdenado("nome"); // LIMPAR TABELA DE CIDADES NA LISTAGEM
 			Messages.addGlobalInfo("Cidade salva com sucesso");
 
 		} catch (RuntimeException erro) {

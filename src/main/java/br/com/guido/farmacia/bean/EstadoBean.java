@@ -40,7 +40,7 @@ public class EstadoBean implements Serializable {
 	public void listar() {
 		try {
 			EstadoDAO estadoDAO = new EstadoDAO();
-			estados = estadoDAO.listar();
+			estados = estadoDAO.listarOrdenado("nome");
 
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os estados");
@@ -58,7 +58,7 @@ public class EstadoBean implements Serializable {
 			estadoDAO.merge(estado);
 
 			novoEstado(); // estancia o estado
-			estados = estadoDAO.listar(); // atualiza a lista
+			estados = estadoDAO.listarOrdenado("nome"); // atualiza a lista
 			Messages.addGlobalInfo("Estado salvo com sucesso");
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar salvar o estado");
