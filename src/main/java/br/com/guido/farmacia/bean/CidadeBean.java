@@ -48,7 +48,7 @@ public class CidadeBean implements Serializable {
 		this.cidades = cidades;
 	}
 
-	@PostConstruct // chamado depois q a tela for criado
+	@PostConstruct // chamado quando a tela for carregada
 	public void listar() {
 		try {
 			CidadeDAO cidadeDAO = new CidadeDAO();
