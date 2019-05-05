@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Vendas</title>
+</h:head>
+<h:body>
+	<p:growl id="mensagem" />
+
+	<h:form id="formulario">
+		<p:panel header="Produtos">
+			<p:dataTable id="tabelaProdutos" emptyMessage="Nenhum registro encontrado."
+				paginator="true" value="#{vendasBean.produtos}" var="cursorProduto"
+				rows="3">
+
+				<p:column headerText="Descrição" sortBy="#{cursorProduto.descricao}"
+					filterBy="#{cursorProduto.descricao}">
+					<h:outputText value="#{cursorProduto.descricao}" />
+				</p:column>
+
+				<p:column headerText="Quantidade"
+					sortBy="#{cursorProduto.quantidade}">
+					<h:outputText value="#{cursorProduto.quantidade}" />
+				</p:column>
+
+				<p:column headerText="Preço" sortBy="#{cursorProduto.preco}"
+					filterBy="#{cursorProduto.preco}">
+					<h:outputText value="#{cursorProduto.preco}">
+						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Fabricante"
+					sortBy="#{cursorProduto.fabricante.descricao}"
+					filterBy="#{cursorProduto.fabricante.descricao}">
+					<h:outputText value="#{cursorProduto.fabricante.descricao}" />
+				</p:column>
+
+				<p:column headerText="Opções">
+					<p:commandButton icon="ui-icon-plus" actionListener="#{vendasBean.adicionar}"
+					update=":formulario:tabelaCarrinho">
+					<f:attribute name="produtoSelecionado" value="#{cursorProduto}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+
+		<p:panel header="Carrinho de Compras">
+			<p:dataTable id="tabelaCarrinho" emptyMessage="Nenhum registro encontrado."
+				paginator="true" value="#{vendasBean.itensVenda}"
+				var="cursorItemVenda" rows="3">
+
+				<p:column headerText="Descrição">
+					<h:outputText value="#{cursorItemVenda.produto.descricao}" />
+				</p:column>
+
+				<p:column headerText="Preço Unitário">
+					<h:outputText value="#{cursorItemVenda.produto.preco}">
+						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Qtd.">
+					<h:outputText value="#{cursorItemVenda.quantidade}" />
+				</p:column>
+
+				<p:column headerText="Preço Parcial">
+					<h:outputText value="#{cursorItemVenda.precoParcial}">
+						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Opções">
+					<p:commandButton icon="ui-icon-minus">
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+
+		<p:panel header="Total">
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

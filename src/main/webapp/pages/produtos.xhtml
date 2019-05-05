@@ -17,7 +17,8 @@
 				paginator="true" value="#{produtoBean.produtos}" var="cursorProduto"
 				rows="5">
 				<f:facet name="header">
-					<p:commandButton value="Novo" actionListener="#{produtoBean.novoProduto}"
+					<p:commandButton value="Novo"
+						actionListener="#{produtoBean.novoProduto}"
 						oncomplete="PF('dlgProdutos').show();"
 						update=":mensagem :formCadastro:painel">
 						<f:actionListener
@@ -30,18 +31,21 @@
 					<h:outputText value="#{cursorProduto.descricao}" />
 				</p:column>
 
-				<p:column headerText="Quantidade" sortBy="#{cursorProduto.quantidade}">
+				<p:column headerText="Quantidade"
+					sortBy="#{cursorProduto.quantidade}">
 					<h:outputText value="#{cursorProduto.quantidade}" />
 				</p:column>
 
 				<p:column headerText="Preço" sortBy="#{cursorProduto.preco}"
-				filterBy="#{cursorProduto.preco}">
+					filterBy="#{cursorProduto.preco}">
 					<h:outputText value="#{cursorProduto.preco}">
 						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="Fabricante" sortBy="#{cursorProduto.fabricante.descricao}" filterBy="#{cursorProduto.fabricante.descricao}">
+				<p:column headerText="Fabricante"
+					sortBy="#{cursorProduto.fabricante.descricao}"
+					filterBy="#{cursorProduto.fabricante.descricao}">
 					<h:outputText value="#{cursorProduto.fabricante.descricao}" />
 				</p:column>
 
@@ -76,16 +80,16 @@
 	</h:form>
 
 	<p:dialog header="Produtos - Cadastro" widgetVar="dlgProdutos"
-		draggable="false" resizable="false" modal="true" closable="false">
-		<h:form id="formCadastro">
+		draggable="true" resizable="false" modal="true" closable="false">
+		<h:form id="formCadastro" enctype="multipart/form-data">
 			<h:panelGrid id="painel" columns="2">
-				<p:outputLabel value="Descrição:" />
-				<p:inputText maxlength="50" size="30"
+				<p:outputLabel for="descricao" value="Descrição:" />
+				<p:inputText id="descricao" maxlength="50" size="30"
 					value="#{produtoBean.produto.descricao}" required="true"
 					requiredMessage="O campo descrição é obrigatório" />
 
-				<p:outputLabel value="Quantidade:" />
-				<p:inputText maxlength="5" size="10"
+				<p:outputLabel for="quantidade" value="Quantidade:" />
+				<p:inputText id="quantidade" maxlength="5" size="10"
 					value="#{produtoBean.produto.quantidade}" required="true"
 					requiredMessage="O campo quantidade é obrigatório"
 					converterMessage="Informe um valor válido para o campo Quantidade"
@@ -93,8 +97,8 @@
 					<f:validateLongRange minimum="0" maximum="1000" />
 				</p:inputText>
 
-				<p:outputLabel value="Preço:" />
-				<p:inputText maxlength="7" size="10"
+				<p:outputLabel for="preco" value="Preço:" />
+				<p:inputText id="preco" maxlength="7" size="10"
 					value="#{produtoBean.produto.preco}" required="true"
 					requiredMessage="O campo preço é obrigatório"
 					converterMessage="Informe um valor válido para o campo preço"
@@ -103,8 +107,8 @@
 					<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 				</p:inputText>
 
-				<p:outputLabel value="Fabricante:" />
-				<p:selectOneMenu filter="true"
+				<p:outputLabel for="fabricante" value="Fabricante:" />
+				<p:selectOneMenu id="fabricante" filter="true"
 					value="#{produtoBean.produto.fabricante}"
 					converter="omnifaces.SelectItemsConverter" required="true"
 					requiredMessage="O campo fabricante é obrigatório">
@@ -115,6 +119,14 @@
 						itemLabel="#{cursorFabricante.descricao}" />
 				</p:selectOneMenu>
 
+				<p:outputLabel for="upload" value="Upload:" />
+				<p:fileUpload id="upload" mode="advanced"
+					fileUploadListener="#{produtoBean.upload}"
+					update=":mensagem :formCadastro:foto" auto="true" />
+				<p:outputLabel for="foto" value="Foto" />
+				<p:graphicImage value="#{imagemBean.foto}">
+					<f:param name="caminho" value="#{produtoBean.produto.caminho}" />
+				</p:graphicImage>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">

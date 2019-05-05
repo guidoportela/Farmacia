@@ -109,7 +109,7 @@ public class UsuarioBean implements Serializable {
 			
 			PessoaDAO pessoaDAO = new PessoaDAO();
 			pessoas = pessoaDAO.listarOrdenado("nome");
-
+			
 		} catch (RuntimeException erro) {
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar selecionar esse usuário");
 			erro.printStackTrace();

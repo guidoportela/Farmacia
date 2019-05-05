@@ -13,12 +13,18 @@
 		<param-value>Development</param-value>
 	</context-param>
 
-	<!-- Tema do PrimeFaces overcast-->
+	<!-- Tema do PrimeFaces overcast -->
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
 		<param-value>start</param-value>
 	</context-param>
-	
+
+	<!-- Definição do Mecanismo de Upload -->
+	<context-param>
+		<param-name>primefaces.UPLOADER</param-name>
+		<param-value>native</param-value>
+	</context-param>
+
 	<!-- Configuração do JSF -->
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
