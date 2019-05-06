@@ -16,7 +16,7 @@
 	<!-- Tema do PrimeFaces overcast -->
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>start</param-value>
+		<param-value>overcast</param-value>
 	</context-param>
 
 	<!-- Definição do Mecanismo de Upload -->

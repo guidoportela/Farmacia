@@ -80,7 +80,7 @@ public class ProdutoBean implements Serializable {
 	public void editar(ActionEvent evento) {
 		try {
 			produto = (Produto) evento.getComponent().getAttributes().get("produtoSelecionado");
-			produto.setCaminho("D:/Upload Farmacia/" + produto.getCodigo() + ".png");
+			produto.setCaminho("D:/UploadFarmacia/" + produto.getCodigo() + ".png");
 
 			FabricanteDAO fabricanteDAO = new FabricanteDAO();
 			fabricantes = fabricanteDAO.listarOrdenado("descricao");
@@ -100,7 +100,7 @@ public class ProdutoBean implements Serializable {
 			Produto produtoRetorno = produtoDAO.merge(produto);
 
 			Path origem = Paths.get(produto.getCaminho());
-			Path destino = Paths.get("D:/Upload Farmacia/" + produtoRetorno.getCodigo() + ".png");
+			Path destino = Paths.get("D:/UploadFarmacia/" + produtoRetorno.getCodigo() + ".png");
 			Files.copy(origem, destino, StandardCopyOption.REPLACE_EXISTING);
 
 			produto = new Produto();
@@ -124,7 +124,7 @@ public class ProdutoBean implements Serializable {
 			ProdutoDAO produtoDAO = new ProdutoDAO();
 			produtoDAO.excluir(produto);
 
-			Path arquivo = Paths.get("D:/Upload Farmacia/" + produto.getCodigo() + ".png");
+			Path arquivo = Paths.get("D:/UploadFarmacia/" + produto.getCodigo() + ".png");
 			Files.deleteIfExists(arquivo);
 
 			produtos = produtoDAO.listar();

@@ -123,8 +123,9 @@
 				<p:fileUpload id="upload" mode="advanced"
 					fileUploadListener="#{produtoBean.upload}"
 					update=":mensagem :formCadastro:foto" auto="true" />
-				<p:outputLabel for="foto" value="Foto" />
-				<p:graphicImage value="#{imagemBean.foto}">
+				
+				<p:outputLabel for="foto" value="Foto:" />
+				<p:graphicImage id="foto" value="#{imagemBean.foto}">
 					<f:param name="caminho" value="#{produtoBean.produto.caminho}" />
 				</p:graphicImage>
 			</h:panelGrid>

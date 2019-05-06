@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @SuppressWarnings("serial")
 @Entity
@@ -27,6 +28,9 @@ public class Venda extends GenericDomain {
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Funcionario funcionario;
+	
+	@Transient
+	private Short quantidadeTotal;
 
 	public Date getHorario() {
 		return horario;
@@ -58,5 +62,13 @@ public class Venda extends GenericDomain {
 
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
+	}
+	
+	public Short getQuantidadeTotal() {
+		return quantidadeTotal;
+	}
+	
+	public void setQuantidadeTotal(Short quantidadeTotal) {
+		this.quantidadeTotal = quantidadeTotal;
 	}
 }

@@ -67,11 +67,13 @@
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="Qtd.">
+				<p:column headerText="Qtd." style="width: 10%;"
+					footerText="Total: #{vendasBean.venda.quantidadeTotal}">
 					<h:outputText value="#{cursorItemVenda.quantidade}" />
 				</p:column>
 
-				<p:column headerText="Preço Parcial">
+				<p:column headerText="Preço Parcial"
+					footerText="Total: #{vendasBean.venda.precoTotal}">
 					<h:outputText value="#{cursorItemVenda.precoParcial}">
 						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 					</h:outputText>
@@ -88,9 +90,7 @@
 		</p:panel>
 
 		<p:panel header="Finalização">
-			<p:panelGrid id="painelFinalizacao" columns="3">
-				<p:outputLabel value="Total: R$" />
-				<h:outputText value="#{vendasBean.venda.precoTotal}" />
+			<p:panelGrid id="painelFinalizacao" styleClass="semBorda" columns="1">
 				<p:commandButton value="Finalizar"
 					actionListener="#{vendasBean.finalizar}"
 					update=":mensagem :formularioFinalizar:painelFinalizar"
@@ -112,7 +112,10 @@
 						timeZone="America/Fortaleza" />
 				</h:outputText>
 
-				<p:outputLabel value="Total:" />
+				<p:outputLabel value="Qtd Itens:" />
+				<h:outputText value="#{vendasBean.venda.quantidadeTotal}" />
+
+				<p:outputLabel value="Preço Total:" />
 				<h:outputText value="#{vendasBean.venda.precoTotal}" />
 
 				<p:outputLabel for="funcionario" value="Funcionário:" />

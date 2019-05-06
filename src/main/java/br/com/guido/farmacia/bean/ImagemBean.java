@@ -18,6 +18,7 @@ import org.primefaces.model.StreamedContent;
 public class ImagemBean {
 	@ManagedProperty("#{param.caminho}")
 	private String caminho;
+
 	private StreamedContent foto;
 
 	public String getCaminho() {
@@ -44,5 +45,4 @@ public class ImagemBean {
 	public void setFoto(StreamedContent foto) {
 		this.foto = foto;
 	}
-
 }
