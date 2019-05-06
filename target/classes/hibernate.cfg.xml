@@ -37,6 +37,7 @@
 		<mapping class="br.com.guido.farmacia.domain.Cliente" />
 		<mapping class="br.com.guido.farmacia.domain.Fabricante" />
 		<mapping class="br.com.guido.farmacia.domain.Funcionario" />
+		<mapping class="br.com.guido.farmacia.domain.ItemVenda" />
 		<mapping class="br.com.guido.farmacia.domain.Pessoa" />
 		<mapping class="br.com.guido.farmacia.domain.Produto" />
 		<mapping class="br.com.guido.farmacia.domain.Usuario" />
