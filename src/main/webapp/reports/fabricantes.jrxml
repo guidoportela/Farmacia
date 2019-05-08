@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fabricantes" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8af78633-1546-4f58-a3de-f38bf8bcf44d">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="ZmFybWFjaWEuZmFicmljYW50ZSBBUyAsMTA1LDc4LDBkMzlhZmQ4LWQ4YzgtNDhiNS1iOTMwLWIy&#xA;YzUzMDQxM2RiODs=&#xA;"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Farmacia Data Adapter "/>
+	<queryString language="SQL">
+		<![CDATA[SELECT farmacia.fabricante.codigo,
+	farmacia.fabricante.descricao
+FROM farmacia.fabricante]]>
+	</queryString>
+	<field name="codigo" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fabricante"/>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fabricante"/>
+	</field>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="10" y="10" width="534" height="60" uuid="9da062a5-5a46-4ac2-b4b1-883144dcdee1"/>
+				<imageExpression><![CDATA["/src/main/webapp/resources/images/logo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="10" width="535" height="34" uuid="6a07fa29-636c-49ab-83f8-e0ace18aa010"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DE FABRICANTES]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="0" width="100" height="30" uuid="21a3e4a7-6f70-4e98-b4a3-49aaf1ad8391">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0b17ecea-8bf6-4320-9605-773cedff3de7"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CÓDIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="0" width="100" height="30" uuid="4326d8ab-63c8-43e0-90c8-142332c7361e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ffaa3b80-9be3-4f21-9f04-a2b79255335a"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIÇÃO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="10" width="100" height="20" uuid="d1ad8b13-4d50-4c5e-b978-e209a3de4c92">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0b17ecea-8bf6-4320-9605-773cedff3de7"/>
+				</reportElement>
+				<textElement verticalAlignment="Top">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="10" width="100" height="20" uuid="4d90d283-2146-4ecf-a1e7-f0ad05385f2a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ffaa3b80-9be3-4f21-9f04-a2b79255335a"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="27" y="13" width="503" height="30" uuid="2e63defa-91e6-4383-81d6-efe0b5b926b1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Travessa São Raimundo, 14, Pirambu, Fortaleza - CE ]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

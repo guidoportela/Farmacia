@@ -10,7 +10,12 @@
 
 	<ui:define name="conteudo">
 		<h:form id="formulario">
-			<p:panel header="Produtos">
+			<p:panel>
+				<p:toolbar>
+					<f:facet name="left">
+						<h:outputText value="Produtos" />
+					</f:facet>
+				</p:toolbar>
 				<p:dataTable id="tabelaProdutos"
 					emptyMessage="Nenhum registro encontrado." paginator="true"
 					value="#{vendasBean.produtos}" var="cursorProduto" rows="3"
@@ -50,11 +55,15 @@
 				</p:dataTable>
 			</p:panel>
 
-			<p:panel header="Carrinho de Compras">
+			<p:panel>
 				<p:dataTable id="tabelaCarrinho"
 					emptyMessage="Nenhum registro encontrado." paginator="true"
 					value="#{vendasBean.itensVenda}" var="cursorItemVenda" rows="3"
 					paginatorPosition="bottom">
+
+					<f:facet name="header">
+						<h:outputText value="Carrinho de Compras" />
+					</f:facet>
 
 					<p:column headerText="Descrição">
 						<h:outputText value="#{cursorItemVenda.produto.descricao}" />

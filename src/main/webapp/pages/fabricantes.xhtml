@@ -10,42 +10,55 @@
 
 	<ui:define name="conteudo">
 		<h:form id="formListagem">
-			<p:panel header="Estados - Listagem">
+			<p:panel>
+				<p:toolbar>
+					<f:facet name="left">
+						<h:outputText value="Lista de Fabricantes" />
+					</f:facet>
+				</p:toolbar>
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
-					paginator="true" value="#{estadoBean.estados}" var="estado"
-					rows="5">
+					paginator="true" value="#{fabricanteBean.fabricantes}"
+					var="cursorFabricante" rows="5">
 					<f:facet name="header">
 						<p:commandButton value="Novo"
-							oncomplete="PF('dlgEstados').show();"
-							actionListener="#{estadoBean.novoEstado()}"
-							update=":formCadastro:painel" />
+							actionListener="#{fabricanteBean.novoFabricante}"
+							oncomplete="PF('dlgFabricantes').show();"
+							update=":mensagem :formCadastro:painel">
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
 					</f:facet>
 
-					<p:column headerText="Nome" sortBy="#{estado.nome}"
-						filterBy="#{estado.nome}">
-						<h:outputText value="#{estado.nome}" />
+					<p:column headerText="Código" sortBy="#{cursorFabricante.codigo}"
+						filterBy="#{cursorFabricante.codigo}">
+						<h:outputText value="#{cursorFabricante.codigo}" />
 					</p:column>
 
-					<p:column headerText="Sigla" sortBy="#{estado.sigla}"
-						filterBy="#{estado.sigla}">
-						<h:outputText value="#{estado.sigla}" />
+					<p:column headerText="Descrição"
+						sortBy="#{cursorFabricante.descricao}"
+						filterBy="#{cursorFabricante.descricao}">
+						<h:outputText value="#{cursorFabricante.descricao}" />
 					</p:column>
 
 					<p:column headerText="Opções">
 						<p:commandButton icon="ui-icon-trash"
-							actionListener="#{estadoBean.excluir}"
+							actionListener="#{fabricanteBean.excluir}"
 							update=":mensagem :formListagem:tabela">
 							<p:confirm header="Confirmação"
-								message="Deseja realmente excluir esse estado?"
+								message="Deseja realmente excluir esse fabricante"
 								icon="ui-icon-alert" />
-							<f:attribute name="estadoSelecionado" value="#{estado}" />
+							<f:attribute name="fabricanteSelecionado"
+								value="#{cursorFabricante}" />
 						</p:commandButton>
 
 						<p:commandButton icon="ui-icon-pencil"
-							actionListener="#{estadoBean.editar}"
-							update=":formCadastro:painel"
-							oncomplete="PF('dlgEstados').show();">
-							<f:attribute name="estadoSelecionado" value="#{estado}" />
+							actionListener="#{fabricanteBean.editar}"
+							update=":mensagem :formCadastro:painel"
+							oncomplete="PF('dlgFabricantes').show();">
+							<f:attribute name="fabricanteSelecionado"
+								value="#{cursorFabricante}" />
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
@@ -59,25 +72,21 @@
 			</p:panel>
 		</h:form>
 
-		<p:dialog header="Cadastro Estados" widgetVar="dlgEstados"
+		<p:dialog header="Cadastro Fabricantes" widgetVar="dlgFabricantes"
 			draggable="false" resizable="false" modal="true" closable="false">
 			<h:form id="formCadastro">
 				<h:panelGrid id="painel" columns="2">
-					<p:outputLabel value="Nome:" />
+					<p:outputLabel value="Descrição" />
 					<p:inputText maxlength="50" size="30"
-						value="#{estadoBean.estado.nome}" />
-
-					<p:outputLabel value="Sigla:" />
-					<p:inputText maxlength="2" size="10"
-						value="#{estadoBean.estado.sigla}" />
+						value="#{fabricanteBean.fabricante.descricao}" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton value="Salvar"
-						actionListener="#{estadoBean.salvar}"
+						actionListener="#{fabricanteBean.salvar}"
 						update=":mensagem :formCadastro:painel :formListagem:tabela" />
 					<p:commandButton value="Fechar"
-						oncomplete="PF('dlgEstados').hide();" />
+						oncomplete="PF('dlgFabricantes').hide();" />
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>

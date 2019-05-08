@@ -6,6 +6,11 @@
 
 	<!-- Nome da Aplicação -->
 	<display-name>Farmacia</display-name>
+	
+	<!-- Página Principal -->
+	<welcome-file-list>
+	<welcome-file>pages/principal.xhtml</welcome-file>
+	</welcome-file-list>
 
 	<!-- Estágio do Projeto -->
 	<context-param>
