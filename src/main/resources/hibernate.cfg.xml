@@ -42,6 +42,8 @@
 		<mapping class="br.com.guido.farmacia.domain.Produto" />
 		<mapping class="br.com.guido.farmacia.domain.Usuario" />
 		<mapping class="br.com.guido.farmacia.domain.Venda" />
+		<mapping class="br.com.guido.farmacia.domain.Caixa" />
+		<mapping class="br.com.guido.farmacia.domain.Movimentacao" />
 	</session-factory>
 
 </hibernate-configuration>
