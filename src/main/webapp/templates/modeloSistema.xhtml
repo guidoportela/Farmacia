@@ -5,6 +5,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:insert name="metadata" />
+
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Sistema Farmácia</title>
@@ -20,14 +23,15 @@
 				styleClass="imagemCentralizada" />
 		</div>
 
-		<div id="cabecalho">
+		<div id="cabecalho" class="divCabecalho">
 			<h:form id="formMenu">
 				<p:menubar>
 					<p:submenu label="Arquivo">
-						<p:menuitem value="Sair" />
+						<p:menuitem value="Sair" action="#{loginBean.sair}" />
 					</p:submenu>
 
-					<p:submenu label="Cadastros">
+					<p:submenu label="Cadastros"
+						rendered="#{loginBean.temPermissoes(['A', 'G'])}">
 						<p:menuitem value="Cidades" url="/pages/cidades.xhtml" />
 						<p:menuitem value="Clientes" url="/pages/clientes.xhtml" />
 						<p:menuitem value="Estados" url="/pages/estados.xhtml" />
@@ -38,7 +42,10 @@
 					</p:submenu>
 
 					<p:submenu label="Vendas">
-						<p:menuitem value="Venda" url="/pages/vendas.xhtml" />
+						<p:menuitem value="Abrir Caixa" url="/pages/caixa.xhtml" />
+						<p:menuitem value="Realizar Venda" url="/pages/vendas.xhtml" />
+						<p:menuitem value="Vendas Realizadas"
+							url="/pages/listaVendas.xhtml" />
 					</p:submenu>
 
 					<p:submenu label="Ajuda">

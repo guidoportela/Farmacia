@@ -8,6 +8,10 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	template="/templates/modeloSistema.xhtml">
 
+	<f:metadata>
+		<f:viewAction action="#{vendasBean.novo}" />
+	</f:metadata>
+
 	<ui:define name="conteudo">
 		<h:form id="formulario">
 			<p:panel>

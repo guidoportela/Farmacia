@@ -15,7 +15,7 @@
 	<!-- Parâmetros de execução -->
 	<build>
 		<!-- Nome do projeto empacotado -->
-		<finalName>SistemaFarmacia</finalName>
+		<finalName>Farmacia</finalName>
 
 		<!-- Plugins -->
 		<plugins>

@@ -1,6 +1,7 @@
 package br.com.guido.farmacia.bean;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -54,5 +55,20 @@ public class LoginBean {
 		} catch (IOException erro) {
 			Messages.addGlobalError(erro.getMessage());
 		}
+	}
+
+	public boolean temPermissoes(List<String> permissoes) {
+		for (String permissao : permissoes) {
+			if (usuarioLogado.getTipo() == permissao.charAt(0)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public String sair() {
+		usuarioLogado = null;
+		return "/pages/login.xhtml?faces-redirect=true";
 	}
 }

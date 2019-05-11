@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
@@ -32,6 +31,7 @@ public class VendasBean implements Serializable {
 	private List<ItemVenda> itensVenda;
 	private List<Cliente> clientes;
 	private List<Funcionario> funcionarios;
+	private List<Venda> vendas;
 
 	public Venda getVenda() {
 		return venda;
@@ -73,7 +73,14 @@ public class VendasBean implements Serializable {
 		this.funcionarios = funcionarios;
 	}
 
-	@PostConstruct
+	public List<Venda> getVendas() {
+		return vendas;
+	}
+
+	public void setVendas(List<Venda> vendas) {
+		this.vendas = vendas;
+	}
+
 	public void novo() {
 		try {
 			venda = new Venda();
@@ -86,6 +93,16 @@ public class VendasBean implements Serializable {
 			itensVenda = new ArrayList<>();
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os produtos");
+			erro.printStackTrace();
+		}
+	}
+
+	public void listar() {
+		try {
+			VendaDAO vendaDAO = new VendaDAO();
+			vendas = vendaDAO.listarOrdenado("horario");
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar listar as vendas");
 			erro.printStackTrace();
 		}
 	}

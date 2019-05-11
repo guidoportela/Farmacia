@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<web-app id="WebApp_ID" version="3.1"
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	id="WebApp_ID" version="3.1">
-
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 	<!-- Nome da Aplicação -->
 	<display-name>Farmacia</display-name>
 	
-	<!-- Página Principal -->
-	<welcome-file-list>
-	<welcome-file>pages/login.xhtml</welcome-file>
-	</welcome-file-list>
-
+	<!-- Localização do faces-config -->
+	<context-param>
+		<param-name>javax.faces.CONFIG_FILES</param-name>
+		<param-value>/WEB-INF/faces-config.xml</param-value>
+	</context-param>
+	
 	<!-- Estágio do Projeto -->
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
 	</context-param>
-
-	<!-- Tema do PrimeFaces overcast -->
+	
+	<!-- Tema do PrimeFaces -->
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
 		<param-value>overcast</param-value>
 	</context-param>
-
+	
 	<!-- Definição do Mecanismo de Upload -->
 	<context-param>
 		<param-name>primefaces.UPLOADER</param-name>
 		<param-value>native</param-value>
 	</context-param>
-
+	
+	<!-- Carregamento do Hibernate -->
+	<listener>
+		<listener-class>br.com.guido.farmacia.util.HibernateContext</listener-class>
+	</listener>
+	
 	<!-- Configuração do JSF -->
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
@@ -40,9 +45,9 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
-
-	<!-- Carregamento do Hibernate -->
-	<listener>
-		<listener-class>br.com.guido.farmacia.util.HibernateContext</listener-class>
-	</listener>
+	
+	<!-- Página Principal -->
+	<welcome-file-list>
+		<welcome-file>pages/login.xhtml</welcome-file>
+	</welcome-file-list>
 </web-app>
