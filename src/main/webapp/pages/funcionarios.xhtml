@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/modeloSistema.xhtml">
+
+	<ui:define name="conteudo">
+		<h:form id="formListagem">
+			<p:panel id="tabela">
+				<p:dataTable emptyMessage="Nenhum registro encontrado."
+					paginator="true" value="#{funcionarioBean.funcionarios}"
+					var="cursorFuncionario" rows="5">
+					<f:facet name="header">Lista de Funcionários </f:facet>
+					<f:facet name="footer">
+						<p:commandButton value="Novo"
+							actionListener="#{funcionarioBean.novoFuncionario}"
+							oncomplete="PF('dlgFuncionario').show();"
+							update=":mensagem :formCadastro:painel">
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+					</f:facet>
+
+					<p:column headerText="Nome"
+						sortBy="#{cursorFuncionario.pessoa.nome}"
+						filterBy="#{cursorFuncionario.pessoa.nome}">
+						<h:outputText value="#{cursorFuncionario.pessoa.nome}" />
+					</p:column>
+
+					<p:column headerText="CPF" sortBy="#{cursorFuncionario.pessoa.cpf}"
+						filterBy="#{cursorFuncionario.pessoa.cpf}" style="width: 20%;">
+						<h:outputText value="#{cursorFuncionario.pessoa.cpf}" />
+					</p:column>
+
+					<p:column headerText="CLT"
+						sortBy="#{cursorFuncionario.carteiraTrabalho}" style="width: 15%;">
+						<h:outputText value="#{cursorFuncionario.carteiraTrabalho}" />
+					</p:column>
+
+					<p:column headerText="Data de Admissão"
+						sortBy="#{cursorFuncionario.dataAdmissao}" style="width: 15%;">
+						<h:outputText value="#{cursorFuncionario.dataAdmissao}">
+							<f:convertDateTime locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Opções" style="width: 20%;">
+						<p:commandButton icon="ui-icon-trash"
+							actionListener="#{funcionarioBean.excluir}"
+							update=":mensagem :formListagem:tabela">
+							<p:confirm header="Confirmação"
+								message="Deseja realmente excluir esse funcionário?"
+								icon="ui-icon-alert" />
+							<f:attribute name="funcionarioSelecionado"
+								value="#{cursorFuncionario}" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-pencil"
+							actionListener="#{funcionarioBean.editar}"
+							update=":mensagem :formCadastro:painel"
+							oncomplete="PF('dlgFuncionario').show();">
+							<f:attribute name="funcionarioSelecionado"
+								value="##{cursorFuncionario}" />
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:confirmDialog global="true">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</p:panel>
+		</h:form>
+
+		<p:dialog header="Cadastro - Funcionário" widgetVar="dlgFuncionario"
+			draggable="false" resizable="false" modal="true" closable="false">
+			<h:form id="formCadastro">
+				<h:panelGrid id="painel" columns="2">
+					<p:outputLabel for="pessoa" value="Pessoa:" />
+					<p:selectOneMenu id="pessoa" filter="true"
+						value="#{funcionarioBean.funcionario.pessoa}" required="true"
+						requiredMessage="O campo pessoas é obrigatório"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem noSelectionOption="true"
+							itemLabel="Selecione uma pessoa" />
+						<f:selectItems value="#{funcionarioBean.pessoas}" var="pessoa"
+							itemValue="#{pessoa}" itemLabel="#{pessoa.nome} - #{pessoa.cpf}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="clt" value="CLT:" />
+					<p:inputText id="clt" maxlength="15" size="15"
+						value="#{funcionarioBean.funcionario.carteiraTrabalho}"
+						required="true" requiredMessage="O campo CLT é obrigatório">
+					</p:inputText>
+
+					<p:outputLabel for="dataAdmissao" value="Data Admissão:" />
+					<p:calendar id="dataAdmissao"
+						value="#{funcionarioBean.funcionario.dataAdmissao}"
+						required="true"
+						requiredMessage="O campo data admissão é obrigatório" size="10"
+						locale="pt_BR" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Salvar"
+						update=":mensagem :formCadastro:painel :formListagem:tabela"
+						actionListener="#{funcionarioBean.salvar}" />
+					<p:commandButton value="Fechar"
+						oncomplete="PF('dlgFuncionario').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

@@ -9,11 +9,12 @@
 
 	<ui:define name="conteudo">
 		<h:form id="formListagem">
-			<p:panel id="tabela" header="Usuários - Listagem">
+			<p:panel id="tabela">
 				<p:dataTable emptyMessage="Nenhum registro encontrado."
 					paginator="true" value="#{usuarioBean.usuarios}"
 					var="cursorUsuario" rows="5">
-					<f:facet name="header">
+					<f:facet name="header">Lista de Usuários</f:facet>
+					<f:facet name="footer">
 						<p:commandButton value="Novo"
 							actionListener="#{usuarioBean.novoUsuario}"
 							oncomplete="PF('dlgUsuario').show();"
@@ -29,20 +30,21 @@
 					</p:column>
 
 					<p:column headerText="CPF" sortBy="#{cursorUsuario.pessoa.cpf}"
-						filterBy="#{cursorUsuario.pessoa.cpf}">
+						filterBy="#{cursorUsuario.pessoa.cpf}" style="width: 20%;">
 						<h:outputText value="#{cursorUsuario.pessoa.cpf}" />
 					</p:column>
 
-					<p:column headerText="Tipo" sortBy="#{cursorUsuario.tipoFormatado}">
+					<p:column headerText="Tipo" sortBy="#{cursorUsuario.tipoFormatado}"
+					style="width: 15%;">
 						<h:outputText value="#{cursorUsuario.tipoFormatado}" />
 					</p:column>
 
 					<p:column headerText="Ativo"
-						sortBy="#{cursorUsuario.ativoFormatado}">
+						sortBy="#{cursorUsuario.ativoFormatado}" style="width: 10%;">
 						<h:outputText value="#{cursorUsuario.ativoFormatado}" />
 					</p:column>
 
-					<p:column headerText="Opções">
+					<p:column headerText="Opções" style="width: 20%;">
 						<p:commandButton icon="ui-icon-trash"
 							actionListener="#{usuarioBean.excluir}"
 							update=":mensagem :formListagem:tabela">
@@ -72,7 +74,7 @@
 			</p:panel>
 		</h:form>
 
-		<p:dialog header="Usuários - Cadastro" widgetVar="dlgUsuario"
+		<p:dialog header="Cadastro - Usuário" widgetVar="dlgUsuario"
 			draggable="false" resizable="false" modal="true" closable="false">
 			<h:form id="formCadastro">
 				<h:panelGrid id="painel" columns="2">

@@ -20,20 +20,22 @@
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
 					paginator="true" value="#{vendasBean.vendas}" var="venda" rows="5"
 					paginatorPosition="top">
-					
+
 					<f:facet name="header">Lista de Vendas</f:facet>
 
 					<p:column style="width: 16px;">
 						<p:rowToggler />
 					</p:column>
 
-					<p:column headerText="Horário" sortBy="#{venda.horario}">
+					<p:column headerText="Horário" sortBy="#{venda.horario}"
+						style="width: 20%;">
 						<h:outputText value="#{venda.horario}">
 							<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy HH:mm" />
 						</h:outputText>
 					</p:column>
 
-					<p:column headerText="Preço Total" sortBy="#{venda.precoTotal}">
+					<p:column headerText="Preço Total" sortBy="#{venda.precoTotal}"
+						style="width: 15%;">
 						<h:outputText value="#{venda.precoTotal}" />
 					</p:column>
 
@@ -57,14 +59,14 @@
 							<p:column headerText="Produto">
 								<h:outputText value="#{itemVenda.produto.descricao}" />
 							</p:column>
-							
-							<p:column headerText="Qtde">
+
+							<p:column headerText="Quantidade" style="width: 25%;">
 								<h:outputText value="#{itemVenda.quantidade}" />
 							</p:column>
-							
-							<p:column headerText="Preço">
+
+							<p:column headerText="Preço" style="width: 25%;">
 								<h:outputText value="#{itemVenda.precoParcial}">
-									
+
 								</h:outputText>
 							</p:column>
 						</p:dataTable>

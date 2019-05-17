@@ -11,15 +11,11 @@
 	<ui:define name="conteudo">
 		<h:form id="formListagem">
 			<p:panel>
-				<p:toolbar>
-					<f:facet name="left">
-						<h:outputText value="Lista de Fabricantes" />
-					</f:facet>
-				</p:toolbar>
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
 					paginator="true" value="#{fabricanteBean.fabricantes}"
 					var="cursorFabricante" rows="5">
-					<f:facet name="header">
+					<f:facet name="header">Lista de Fabricantes</f:facet>
+					<f:facet name="footer">
 						<p:commandButton value="Novo"
 							actionListener="#{fabricanteBean.novoFabricante}"
 							oncomplete="PF('dlgFabricantes').show();"
@@ -30,7 +26,7 @@
 					</f:facet>
 
 					<p:column headerText="Código" sortBy="#{cursorFabricante.codigo}"
-						filterBy="#{cursorFabricante.codigo}">
+						filterBy="#{cursorFabricante.codigo}" style="width: 20%;">
 						<h:outputText value="#{cursorFabricante.codigo}" />
 					</p:column>
 
@@ -40,7 +36,7 @@
 						<h:outputText value="#{cursorFabricante.descricao}" />
 					</p:column>
 
-					<p:column headerText="Opções">
+					<p:column headerText="Opções" style="width: 30%;">
 						<p:commandButton icon="ui-icon-trash"
 							actionListener="#{fabricanteBean.excluir}"
 							update=":mensagem :formListagem:tabela">
@@ -72,13 +68,14 @@
 			</p:panel>
 		</h:form>
 
-		<p:dialog header="Cadastro Fabricantes" widgetVar="dlgFabricantes"
+		<p:dialog header="Cadastro - Fabricantes" widgetVar="dlgFabricantes"
 			draggable="false" resizable="false" modal="true" closable="false">
 			<h:form id="formCadastro">
 				<h:panelGrid id="painel" columns="2">
-					<p:outputLabel value="Descrição" />
-					<p:inputText maxlength="50" size="30"
-						value="#{fabricanteBean.fabricante.descricao}" />
+					<p:outputLabel for="fabri" value="Descrição" />
+					<p:inputText id="fabri" maxlength="50" size="30"
+						value="#{fabricanteBean.fabricante.descricao}" required="true"
+						requiredMessage="O campo descrição é obrigatório" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">

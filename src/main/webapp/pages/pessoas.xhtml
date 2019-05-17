@@ -9,13 +9,14 @@
 
 	<ui:define name="conteudo">
 		<h:form id="formListagem">
-			<p:panel header="Pessoas - Listagem">
+			<p:panel>
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
 					paginator="true" value="#{pessoaBean.pessoas}" var="cursorPessoa"
 					rows="5">
-					<f:facet name="header">
+					<f:facet name="header">Lista de Pessoas</f:facet>
+					<f:facet name="footer">
 						<p:commandButton value="Novo"
-							actionListener="#{pessoaBean.novaPessoa()}"
+							actionListener="#{pessoaBean.novaPessoa}"
 							oncomplete="PF('dlgPessoas').show();"
 							update=":mensagem :formCadastro:painel">
 							<f:actionListener
@@ -28,15 +29,17 @@
 						<h:outputText value="#{cursorPessoa.nome}" />
 					</p:column>
 
-					<p:column headerText="RG" sortBy="#{cursorPessoa.rg}">
+					<p:column headerText="RG" sortBy="#{cursorPessoa.rg}"
+						filterBy="#{cursorPessoa.rg}" style="width: 20%;">
 						<h:outputText value="#{cursorPessoa.rg}" />
 					</p:column>
 
-					<p:column headerText="CPF" sortBy="#{cursorPessoa.cpf}">
+					<p:column headerText="CPF" sortBy="#{cursorPessoa.cpf}"
+						filterBy="#{cursorPessoa.cpf}" style="width: 20%;">
 						<h:outputText value="#{cursorPessoa.cpf}" />
 					</p:column>
 
-					<p:column headerText="Opções">
+					<p:column headerText="Opções" style="width: 20%;">
 						<p:commandButton icon="ui-icon-trash"
 							actionListener="#{pessoaBean.excluir}"
 							update=":mensagem :formListagem:tabela">
@@ -66,7 +69,7 @@
 			</p:panel>
 		</h:form>
 
-		<p:dialog header="Pessoas - Cadastro" widgetVar="dlgPessoas"
+		<p:dialog header="Cadastro - Pessoas" widgetVar="dlgPessoas"
 			draggable="false" resizable="false" modal="true" closable="false">
 			<h:form id="formCadastro">
 				<h:panelGrid id="painel" columns="2">
@@ -76,7 +79,7 @@
 						requiredMessage="O campo nome é obrigatório" />
 
 					<p:outputLabel for="rg" value="RG:" />
-					<p:inputMask id="rg" mask="99.999.999.999-99" size="14"
+					<p:inputMask id="rg" mask="99.999.999.999-99" size="16"
 						value="#{pessoaBean.pessoa.rg}" required="true"
 						requiredMessage="O campo RG é obrigatório" />
 

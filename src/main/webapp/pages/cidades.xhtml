@@ -32,13 +32,13 @@
 					</p:column>
 
 					<p:column headerText="Estado" sortBy="#{cursorCidade.estado.nome}"
-						filterBy="#{cursorCidade.estado.nome}">
+						filterBy="#{cursorCidade.estado.nome}" style="width: 30%;">
 						<h:outputText value="#{cursorCidade.estado.nome}" />
 						<h:outputText value=" - " />
 						<h:outputText value="#{cursorCidade.estado.sigla}" />
 					</p:column>
 
-					<p:column headerText="Opções">
+					<p:column headerText="Opções" style="width: 30%;">
 						<p:commandButton icon="ui-icon-trash"
 							actionListener="#{cidadeBean.excluir}"
 							update=":mensagem :formListagem:tabela">
@@ -69,7 +69,7 @@
 			</p:panel>
 		</h:form>
 
-		<p:dialog header="Cidades - Cadastro" widgetVar="dlgCidades"
+		<p:dialog header="Cadastro - Cidades" widgetVar="dlgCidades"
 			draggable="false" resizable="false" modal="true" closable="false">
 			<h:form id="formCadastro">
 				<h:panelGrid id="painel" columns="2">

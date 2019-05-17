@@ -39,12 +39,12 @@
 					</p:column>
 
 					<p:column headerText="Quantidade"
-						sortBy="#{cursorProduto.quantidade}">
+						sortBy="#{cursorProduto.quantidade}" style="width: 10%;">
 						<h:outputText value="#{cursorProduto.quantidade}" />
 					</p:column>
 
 					<p:column headerText="Preço" sortBy="#{cursorProduto.preco}"
-						filterBy="#{cursorProduto.preco}">
+						filterBy="#{cursorProduto.preco}" style="width: 10%;">
 						<h:outputText value="#{cursorProduto.preco}">
 							<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 						</h:outputText>
@@ -56,7 +56,7 @@
 						<h:outputText value="#{cursorProduto.fabricante.descricao}" />
 					</p:column>
 
-					<p:column headerText="Opções">
+					<p:column headerText="Opções" style="width: 20%;">
 						<p:commandButton icon="ui-icon-trash"
 							actionListener="#{produtoBean.excluir}"
 							update=":mensagem :formListagem:tabela">
@@ -86,7 +86,7 @@
 			</p:panel>
 		</h:form>
 
-		<p:dialog header="Cadastro Produtos" widgetVar="dlgProdutos"
+		<p:dialog header="Cadastro - Produtos" widgetVar="dlgProdutos"
 			draggable="true" resizable="false" modal="true" closable="false">
 			<h:form id="formCadastro" enctype="multipart/form-data">
 				<h:panelGrid id="painel" columns="2">

@@ -15,15 +15,11 @@
 	<ui:define name="conteudo">
 		<h:form id="formulario">
 			<p:panel>
-				<p:toolbar>
-					<f:facet name="left">
-						<h:outputText value="Produtos" />
-					</f:facet>
-				</p:toolbar>
 				<p:dataTable id="tabelaProdutos"
 					emptyMessage="Nenhum registro encontrado." paginator="true"
 					value="#{vendasBean.produtos}" var="cursorProduto" rows="3"
 					paginatorPosition="bottom">
+					<f:facet name="header">Produtos</f:facet>
 
 					<p:column headerText="Descrição"
 						sortBy="#{cursorProduto.descricao}"
@@ -32,12 +28,12 @@
 					</p:column>
 
 					<p:column headerText="Quantidade"
-						sortBy="#{cursorProduto.quantidade}">
+						sortBy="#{cursorProduto.quantidade}" style="width: 10%;">
 						<h:outputText value="#{cursorProduto.quantidade}" />
 					</p:column>
 
 					<p:column headerText="Preço" sortBy="#{cursorProduto.preco}"
-						filterBy="#{cursorProduto.preco}">
+						filterBy="#{cursorProduto.preco}" style="width: 10%;">
 						<h:outputText value="#{cursorProduto.preco}">
 							<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 						</h:outputText>
@@ -49,7 +45,7 @@
 						<h:outputText value="#{cursorProduto.fabricante.descricao}" />
 					</p:column>
 
-					<p:column headerText="Opções">
+					<p:column headerText="Opções" style="width: 20%;">
 						<p:commandButton icon="ui-icon-plus"
 							actionListener="#{vendasBean.adicionar}"
 							update=":formulario:tabelaCarrinho :formulario:painelFinalizacao">
@@ -73,25 +69,25 @@
 						<h:outputText value="#{cursorItemVenda.produto.descricao}" />
 					</p:column>
 
-					<p:column headerText="Preço Unitário">
+					<p:column headerText="Preço Unitário" style="width: 15%;">
 						<h:outputText value="#{cursorItemVenda.produto.preco}">
 							<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 						</h:outputText>
 					</p:column>
 
-					<p:column headerText="Qtd." style="width: 10%;"
+					<p:column headerText="Quantidade" style="width: 10%;"
 						footerText="Total: #{vendasBean.venda.quantidadeTotal}">
 						<h:outputText value="#{cursorItemVenda.quantidade}" />
 					</p:column>
 
-					<p:column headerText="Preço Parcial"
+					<p:column headerText="Preço Parcial" style="width: 15%;"
 						footerText="Total: #{vendasBean.venda.precoTotal}">
 						<h:outputText value="#{cursorItemVenda.precoParcial}">
 							<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 						</h:outputText>
 					</p:column>
 
-					<p:column headerText="Opções">
+					<p:column headerText="Opções" style="width: 20%;">
 						<p:commandButton icon="ui-icon-minus"
 							actionListener="#{vendasBean.remover}"
 							update=":formulario:tabelaCarrinho :formulario:painelFinalizacao">

@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.omnifaces.util.Messages;
 
 import br.com.guido.farmacia.dao.PessoaDAO;
@@ -72,6 +73,9 @@ public class UsuarioBean implements Serializable {
 
 	public void salvar() {
 		try {
+			SimpleHash hash = new SimpleHash("md5", usuario.getSenha() );
+			usuario.setSenha(hash.toHex());
+			
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
 			usuarioDAO.merge(usuario);
 
@@ -82,7 +86,7 @@ public class UsuarioBean implements Serializable {
 			pessoas = pessoaDAO.listarOrdenado("nome");
 			Messages.addFlashGlobalInfo("Usuário salvo com sucesso");
 		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Ocorreu um erro ao tentar dalvar esse usuário");
+			Messages.addGlobalError("Ocorreu um erro ao tentar salvar esse usuário");
 			erro.printStackTrace();
 		}
 	}

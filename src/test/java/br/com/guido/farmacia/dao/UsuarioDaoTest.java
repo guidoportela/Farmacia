@@ -13,7 +13,7 @@ public class UsuarioDaoTest {
 	public void salvar() {
 
 		PessoaDAO pessoaDAO = new PessoaDAO();
-		Pessoa pessoa = pessoaDAO.buscar(1L);
+		Pessoa pessoa = pessoaDAO.buscar(2L);
 
 		if (pessoa == null) {
 			System.out.println("Nenhuma pessoa encontrada.");
@@ -25,11 +25,11 @@ public class UsuarioDaoTest {
 			Usuario usuario = new Usuario();
 			usuario.setAtivo(true);
 			usuario.setPessoa(pessoa);
-			usuario.setSenhaSemCriptografia("1234");
+			usuario.setSenhaSemCriptografia("1111");
 
 			SimpleHash hash = new SimpleHash("md5", usuario.getSenhaSemCriptografia());
 			usuario.setSenha(hash.toHex());
-			usuario.setTipo('A');
+			usuario.setTipo('G');
 
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
 			usuarioDAO.salvar(usuario);
