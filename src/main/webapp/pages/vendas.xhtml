@@ -95,8 +95,7 @@
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
-				<p:panelGrid id="painelFinalizacao" styleClass="semBorda"
-					columns="1">
+				<h:panelGrid id="painelFinalizacao" columns="1">
 					<p:commandButton value="Finalizar" style="margin-left:1190%;"
 						actionListener="#{vendasBean.finalizar}"
 						update=":mensagem :formularioFinalizar:painelFinalizar"
@@ -104,7 +103,7 @@
 						<f:actionListener
 							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
-				</p:panelGrid>
+				</h:panelGrid>
 			</p:panel>
 		</h:form>
 

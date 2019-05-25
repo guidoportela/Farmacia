@@ -17,7 +17,3 @@
 .ui-widget, .ui-widget .ui-widget {
 	font-size: 16px !important;
 }
-
-.semBorda tr, .semBorda td {
-	border: none !important;
-}
