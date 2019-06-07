@@ -109,7 +109,7 @@ public class FuncionarioBean implements Serializable {
 
 			PessoaDAO pessoaDAO = new PessoaDAO();
 			pessoas = pessoaDAO.listarOrdenado("nome");
-
+			
 		} catch (RuntimeException erro) {
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar selecionar esse funcionário");
 			erro.printStackTrace();

@@ -85,7 +85,7 @@ public class VendasBean implements Serializable {
 		try {
 			venda = new Venda();
 			venda.setPrecoTotal(new BigDecimal("0.00"));
-			venda.setQuantidadeTotal(new Short("0"));
+			venda.setQuantidadeTotal(0);
 
 			ProdutoDAO produtoDAO = new ProdutoDAO();
 			produtos = produtoDAO.listarOrdenado("descricao");
@@ -121,12 +121,12 @@ public class VendasBean implements Serializable {
 			ItemVenda itemVenda = new ItemVenda();
 			itemVenda.setPrecoParcial(produto.getPreco());
 			itemVenda.setProduto(produto);
-			itemVenda.setQuantidade(new Short("1"));
+			itemVenda.setQuantidade(1);
 
 			itensVenda.add(itemVenda);
 		} else {
 			ItemVenda itemVenda = itensVenda.get(achou);
-			itemVenda.setQuantidade(new Short(itemVenda.getQuantidade() + 1 + ""));
+			itemVenda.setQuantidade(itemVenda.getQuantidade() + 1);
 			itemVenda.setPrecoParcial(produto.getPreco().multiply(new BigDecimal(itemVenda.getQuantidade())));
 		}
 		calcular();
@@ -147,15 +147,14 @@ public class VendasBean implements Serializable {
 		calcular();
 	}
 
-	@SuppressWarnings("static-access")
 	public void calcular() {
 		venda.setPrecoTotal(new BigDecimal("0.00"));
-		venda.setQuantidadeTotal(new Short("0"));
+		venda.setQuantidadeTotal(0);
 
 		for (int posicao = 0; posicao < itensVenda.size(); posicao++) {
 			ItemVenda itemVenda = itensVenda.get(posicao);
 			venda.setPrecoTotal(venda.getPrecoTotal().add(itemVenda.getPrecoParcial()));
-			venda.setQuantidadeTotal(venda.getQuantidadeTotal().valueOf(itemVenda.getQuantidade()));
+			venda.setQuantidadeTotal(venda.getQuantidadeTotal() + itemVenda.getQuantidade());
 		}
 	}
 

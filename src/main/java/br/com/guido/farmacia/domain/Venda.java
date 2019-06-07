@@ -36,7 +36,7 @@ public class Venda extends GenericDomain {
 	private List<ItemVenda> itensVenda;
 
 	@Transient
-	private Short quantidadeTotal;
+	private Integer quantidadeTotal;
 
 	public Date getHorario() {
 		return horario;
@@ -78,11 +78,11 @@ public class Venda extends GenericDomain {
 		this.itensVenda = itensVenda;
 	}
 
-	public Short getQuantidadeTotal() {
+	public Integer getQuantidadeTotal() {
 		return quantidadeTotal;
 	}
 
-	public void setQuantidadeTotal(Short quantidadeTotal) {
+	public void setQuantidadeTotal(Integer quantidadeTotal) {
 		this.quantidadeTotal = quantidadeTotal;
 	}
 }

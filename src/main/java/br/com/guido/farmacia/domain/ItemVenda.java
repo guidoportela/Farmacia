@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class ItemVenda extends GenericDomain {
 	@Column(nullable = false)
-	private Short quantidade;
+	private Integer quantidade;
 
 	@Column(nullable = false, precision = 7, scale = 2)
 	private BigDecimal precoParcial;
@@ -24,11 +24,11 @@ public class ItemVenda extends GenericDomain {
 	@JoinColumn(nullable = false)
 	private Venda venda;
 
-	public Short getQuantidade() {
+	public Integer getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(Short quantidade) {
+	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
 

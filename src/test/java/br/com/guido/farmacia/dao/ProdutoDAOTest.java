@@ -21,7 +21,7 @@ public class ProdutoDAOTest {
 		produto.setDescricao("Cataflan 50mg");
 		produto.setFabricante(fabricante);
 		produto.setPreco(new BigDecimal("13.70"));
-		produto.setQuantidade(new Short("7"));
+		produto.setQuantidade(7);
 		System.out.println("Produto salvo com sucesso.");
 	}
 
